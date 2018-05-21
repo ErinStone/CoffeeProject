@@ -1,0 +1,107 @@
+ Roast Profiles {{1+1}}
+<button ng-click="$ctrl.newRoast()">New Roast</button>
+
+<div id="sidebar">
+
+    <ul>
+        <li ng-repeat="roast in $ctrl.roasts">
+            <a href='#' ng-click="$ctrl.getRoast(roast.roast_id)">{{ roast.r_name }}</a>
+        </li>
+    </ul>
+
+</div>
+
+
+<div id="content">
+    <ng-show ng-show="!($ctrl.hasRoast)">
+        <h1>Welcome to Roast Profiles!</h1>
+
+        <p>This is a sample application demonstrating how to build a CRUD application with Angular.js and RESTful services.</p>
+
+        <p>Select a roast in the list on the left to edit the details, or click the New Roast button to add a roast to your
+            list.
+        </p>
+    </ng-show>
+
+
+    <ng-show ng-show="$ctrl.isEditRoast">
+        <div class="form-left-col">
+
+            <label>Name:</label>
+            <input type="text" ng-model="$ctrl.roast.r_name" disabled />
+
+            <label>Weight (in lbs):</label>
+            <input type="text" ng-model="$ctrl.roast.weight" disabled />
+
+            <label>Profile:</label>
+            <input type="text" ng-model="$ctrl.roast.p_name" disabled />
+
+            <label>Profile Decription:</label>
+            <textarea disabled>{{$ctrl.selectedProfileByName($ctrl.roast.p_name)}} </textarea>
+
+            <label>Region:</label>
+            <input type="text" ng-model="$ctrl.roast.g_name" disabled />
+
+            <label>Country:</label>
+            <input type="text" ng-model="$ctrl.roast.c_name" disabled />
+
+            <label>Area:</label>
+            <input type="text" ng-model="$ctrl.roast.a_name" disabled />
+
+            <button class="save" ng-click="$ctrl.updateRoast()">Save</button>
+            <button class="delete" ng-click="$ctrl.deleteRoast()">Delete</button>
+        </div>
+
+        <div class="form-right-col">
+            <label>Notes:</label>
+            <textarea ng-model="$ctrl.roast.description"></textarea>
+        </div>
+    </ng-show>
+
+    <ng-show ng-show="$ctrl.isNewRoast">
+        <div class="form-left-col">
+            <form name="addForm" ng-submit="$ctrl.addRoast()">
+                <label>Name:</label>
+                <input type="text" ng-model="$ctrl.roast.r_name" ng-required="true" ;/>
+
+                <label>Weight (in lbs):</label>
+                <input type="text" ng-model="$ctrl.roast.weight" ng-required="true" />
+
+                <label>Profile:</label>
+                <select ng-model="$ctrl.roast.p_name" ng-required="true">
+                    <option ng-repeat="option in $ctrl.profiles" value="{{option.id}}">{{option.p_name}}</option>
+                </select>
+
+                <label>Profile Decription:</label>
+                <textarea disabled>{{$ctrl.selectedProfileById($ctrl.roast.p_name)}} </textarea>
+
+                <label>Region:</label>
+                <select ng-model="$ctrl.roast.g_name" ng-required="true">
+                    <option ng-repeat="region in $ctrl.regions" value="{{region.id}}">{{region.g_name}}</option>
+                </select>
+
+                <ng-show ng-show="$ctrl.haveCountriesForRegion()">
+                    <label>Country:</label>
+                    <select ng-model="$ctrl.roast.c_name">
+                        <option ng-repeat="country in $ctrl.countries | filter : {g_id : $ctrl.roast.g_name} : true" value="{{country.id}}">{{country.c_name}}</option>
+                    </select>
+                </ng-show>
+
+                <ng-show ng-show="$ctrl.haveAreasForCountry()">
+                    <label>Area:</label>
+                    <select ng-model="$ctrl.roast.a_name">
+                        <option ng-repeat="area in $ctrl.areas | filter : {c_id : $ctrl.roast.c_name} : true" value="{{area.id}}">{{area.a_name}}</option>
+                    </select>
+                </ng-show>
+                <br>
+                <input type="submit" class="save" value = "Add" ng-disabled="addForm.$invalid"/>
+            </form>
+
+        </div>
+
+        <div class="form-right-col">
+            <label>Notes:</label>
+            <textarea ng-model="$ctrl.roast.description"></textarea>
+        </div>
+    </ng-show>
+</div>

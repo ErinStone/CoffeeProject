@@ -1,0 +1,5 @@
+<ul>
+    <li ng-repeat="roast in $ctrl.roasts">
+        <a ui-sref="detail({id: roast.id})">{{ roast.name }}</a>
+    </li>
+</ul>

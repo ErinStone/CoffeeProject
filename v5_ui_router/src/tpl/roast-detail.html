@@ -1,0 +1,31 @@
+
+    <div class="form-left-col">
+        <label>Name:</label>
+        <input type="text" value= {{$ctrl.roast.name}} disabled />
+
+        <label>Weight (in lbs):</label>
+        <input type="text" value = {{$ctrl.roast.weight}} disabled />
+
+        <label>Profile:</label>
+        <input type="text" value = {{$ctrl.roast.profile}} disabled />
+
+        <label>Profile Decription:</label>
+        <textarea disabled>{{$ctrl.roast.profile_description}} </textarea>
+
+        <label>Region:</label>
+        <input type="text" value = {{$ctrl.roast.region}} disabled />
+
+        <label>Country:</label>
+        <input type="text" value = {{$ctrl.roast.country}} disabled />
+
+        <label>Area:</label>
+        <input type="text" value = {{$ctrl.roast.area}} disabled />
+
+        <button class="save" ng-click="$ctrl.updateRoast()">Save</button>
+        <button class="delete" ng-click="$ctrl.deleteRoast($ctrl.roast.id)">Delete</button>
+    </div>
+
+    <div class="form-right-col">
+        <label>Notes:</label>
+        <textarea ng-model="$ctrl.roast.description"></textarea>
+    </div>

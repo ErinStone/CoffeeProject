@@ -1,0 +1,30 @@
+ Roast Profiles {{1+1}}
+<button ng-click="$ctrl.createRoast()">New Roast</button>
+
+<div id="sidebar">
+
+    <roast-list roasts = $ctrl.roasts on-set-roast="$ctrl.setRoast(data)"></roast-list>
+
+</div>
+
+
+<div id="content">
+    <ng-show ng-show="!$ctrl.hasRoast">
+        <roast-welcome></roast-welcome>
+    </ng-show>
+
+    <ng-show ng-show="$ctrl.isEditRoast">
+        <roast-detail roast = $ctrl.roast 
+            on-update-roast="$ctrl.updateRoast()"
+            on-delete-roast="$ctrl.deleteRoast()">
+        </roast-detail>
+    </ng-show>
+
+
+    <ng-show ng-show="$ctrl.isNewRoast">
+        <roast-add 
+            on-add-roast="$ctrl.addRoast(data)">
+        </roast-add>
+    </ng-show>
+
+</div>

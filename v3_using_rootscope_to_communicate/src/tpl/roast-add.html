@@ -1,0 +1,44 @@
+<div class="form-left-col">
+        <form name="addForm" ng-submit="$ctrl.addRoast()">
+            <label>Name:</label>
+            <input type="text" ng-model="$ctrl.roast.r_name" ng-required="true" ;/>
+
+            <label>Weight (in lbs):</label>
+            <input type="text" ng-model="$ctrl.roast.weight" ng-required="true" />
+
+            <label>Profile:</label>
+            <select ng-model="$ctrl.roast.p_name" ng-required="true">
+                <option ng-repeat="option in $ctrl.profiles" value="{{option.id}}">{{option.p_name}}</option>
+            </select>
+
+            <label>Profile Decription:</label>
+            <textarea disabled>{{$ctrl.selectedProfileById($ctrl.roast.p_name)}} </textarea>
+
+            <label>Region:</label>
+            <select ng-model="$ctrl.roast.g_name" ng-required="true">
+                <option ng-repeat="region in $ctrl.regions" value="{{region.id}}">{{region.g_name}}</option>
+            </select>
+
+            <ng-show ng-show="$ctrl.haveCountriesForRegion()">
+                <label>Country:</label>
+                <select ng-model="$ctrl.roast.c_name">
+                    <option ng-repeat="country in $ctrl.countries | filter : {g_id : $ctrl.roast.g_name} : true" value="{{country.id}}">{{country.c_name}}</option>
+                </select>
+            </ng-show>
+
+            <ng-show ng-show="$ctrl.haveAreasForCountry()">
+                <label>Area:</label>
+                <select ng-model="$ctrl.roast.a_name">
+                    <option ng-repeat="area in $ctrl.areas | filter : {c_id : $ctrl.roast.c_name} : true" value="{{area.id}}">{{area.a_name}}</option>
+                </select>
+            </ng-show>
+            <br>
+            <input type="submit" class="save" value = "Add" ng-disabled="addForm.$invalid"/>
+        </form>
+
+    </div>
+
+    <div class="form-right-col">
+        <label>Notes:</label>
+        <textarea ng-model="$ctrl.roast.description"></textarea>
+    </div>

@@ -1,0 +1,25 @@
+ Roast Profiles {{1+1}}
+<button ng-click="$ctrl.createRoast()">New Roast</button>
+
+<div id="sidebar">
+
+    <roast-list></roast-list>
+
+</div>
+
+
+<div id="content">
+    <ng-show ng-show="!($ctrl.hasRoast)">
+        <roast-welcome></roast-welcome>
+    </ng-show>
+
+    <ng-show ng-show="$ctrl.isEditRoast">
+        <roast-detail></roast-detail>
+    </ng-show>
+
+
+    <ng-show ng-show="$ctrl.isNewRoast">
+        <roast-add></roast-add>
+    </ng-show>
+
+</div>

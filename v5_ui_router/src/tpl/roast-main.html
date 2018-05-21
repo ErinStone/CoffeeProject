@@ -1,0 +1,22 @@
+ Roast Profiles {{1+1}}
+
+<button ui-sref="new">New Roast</button>
+
+<div id="sidebar">
+
+    <roast-list roasts = $ctrl.roasts></roast-list>
+
+</div>
+
+
+<div id="content">
+    <!-- When the routed component is activated, its declared bindings are inspected. 
+        If a binding declared on the routed component is also wired on the <ui-view>,
+        then the routed component will receive the binding.-->
+    <div ui-view 
+        on-add-roast="$ctrl.addRoast(data)"
+        on-delete-roast="$ctrl.deleteRoast(data)"
+        on-update-roast="$ctrl.updateRoast(data)">
+    </div>
+
+</div>

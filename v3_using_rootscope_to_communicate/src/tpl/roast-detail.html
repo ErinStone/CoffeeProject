@@ -1,0 +1,33 @@
+<!--<ng-show ng-show="$ctrl.hasRoast()"> -->
+    <div class="form-left-col">
+
+        <label>Name:</label>
+        <input type="text" ng-model="$ctrl.roast.r_name" disabled />
+
+        <label>Weight (in lbs):</label>
+        <input type="text" ng-model="$ctrl.roast.weight" disabled />
+
+        <label>Profile:</label>
+        <input type="text" ng-model="$ctrl.roast.p_name" disabled />
+
+        <label>Profile Decription:</label>
+        <textarea disabled>profile description </textarea>
+
+        <label>Region:</label>
+        <input type="text" ng-model="$ctrl.roast.g_name" disabled />
+
+        <label>Country:</label>
+        <input type="text" ng-model="$ctrl.roast.c_name" disabled />
+
+        <label>Area:</label>
+        <input type="text" ng-model="$ctrl.roast.a_name" disabled />
+
+        <button class="save" ng-click="$ctrl.updateRoast()">Save</button>
+        <button class="delete" ng-click="$ctrl.deleteRoast()">Delete</button>
+    </div>
+
+    <div class="form-right-col">
+        <label>Notes:</label>
+        <textarea ng-model="$ctrl.roast.description"></textarea>
+    </div>
+<!--</ng-show> -->
